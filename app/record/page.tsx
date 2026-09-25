@@ -1,5 +1,6 @@
 "use client"
 import{useState} from "react";
+import Link from "next/link";
 
 type Record = {
     id: number;
@@ -34,7 +35,20 @@ export default function Record(){
 
         setRecords(data);
         console.log(data);
-console.log(Array.isArray(data));
+    }
+    async function handleDelete(id: number){
+        const response = await fetch(`/api/record/${id}`,{
+            method:"DELETE",
+        })
+
+        if (!response.ok) {
+            return;
+        }
+
+        const records = await fetch("/api/record");
+        const data = await records.json();
+
+        setRecords(data);
     }
 
     return(
@@ -59,6 +73,9 @@ console.log(Array.isArray(data));
                         <div key={record.id}>
                             <p>{record.name}</p>
                             <p>{record.score}</p>
+                            <button onClick={()=>handleDelete(record.id)}>削除</button>
+                            <br/>
+                            <Link href={`/record/${record.id}`}>編集</Link>
                         </div>
                     )
                 })
