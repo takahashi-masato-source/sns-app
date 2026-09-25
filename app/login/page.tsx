@@ -6,7 +6,8 @@ export default function Login() {
     const[mail,setMail]=useState("");
     const[password,setPassword]=useState("");
 
-    async function handleLogin(){
+    async function handleLogin(e: React.FormEvent<HTMLFormElement>){
+        e.preventDefault()
         const response = await fetch("/api/login",{
             method:"POST",
             headers:{
@@ -44,6 +45,7 @@ export default function Login() {
 
         <div className="flex flex-col">
             <Link href={"/"}>登録画面はこちら</Link>
+            <Link href={"/record"}>score入力画面はこちら</Link>
             <Link href={"/logout"}>ログアウトはこちら</Link>
         </div>
     </main>

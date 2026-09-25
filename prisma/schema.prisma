@@ -13,10 +13,20 @@ model User{
   passwordHash String
 
   session Session?
+  records Record[]
 }
 
 model Session{
   id String @id
   userId Int@unique
+  user User @relation(fields:[userId],references:[id])
+}
+
+model Record{
+  id Int @id @default(autoincrement())
+  name String
+  score Int
+  userId Int
+
   user User @relation(fields:[userId],references:[id])
 }
