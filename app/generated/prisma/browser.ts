@@ -28,7 +28,7 @@ export type User = Prisma.UserModel
  */
 export type Session = Prisma.SessionModel
 /**
- * Model Record
+ * Model Post
  * 
  */
-export type Record = Prisma.RecordModel
+export type Post = Prisma.PostModel

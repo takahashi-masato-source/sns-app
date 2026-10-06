@@ -1,47 +1,22 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
+import { loginService } from "@/lib/services/loginService";
 
 export async function POST(request:Request){
-    const body = await request.json();
+    try{
+        const body = await request.json();
+        await loginService(body.mail,body.password);
 
-    const loginUser = await prisma.user.findUnique({
-        where:{
-            mail:body.mail,
-        }
-    })
-
-    if(!loginUser){
         return NextResponse.json(
-            {error:"ログイン情報がない"},
-            {status:400}
+            {message:"ログイン成功"},
+            {status:200}
         )
+    }catch(error){
+        return NextResponse.json(
+            {message:"ログイン失敗"},
+            {status:500}
+        )
+
     }
 
-    const isMatch = await bcrypt.compare(
-        body.password,
-        loginUser.passwordHash
-    )
-
-    if(!isMatch){
-        return NextResponse.json(
-            {error:"パスワードが違う"},
-            {status:400}
-        )
-    }
-    const session = await prisma.session.create({
-        data:{
-            id:crypto.randomUUID(),
-            userId:loginUser.id
-        }
-    })
-
-    const cookiestore = await cookies();
-    cookiestore.set("sessionId",session.id);
-
-    return NextResponse.json(
-        {message:"ログイン成功"},
-    )
 
 }

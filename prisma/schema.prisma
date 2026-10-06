@@ -9,24 +9,27 @@ datasource db {
 
 model User{
   id Int @id @default(autoincrement())
+  name String
   mail String @unique
   passwordHash String
+  bio String @default("")
 
-  session Session?
-  records Record[]
+  session Session[]
+  post Post[]
 }
 
 model Session{
   id String @id
-  userId Int@unique
+  userId Int 
+  
   user User @relation(fields:[userId],references:[id])
 }
 
-model Record{
+model Post{
   id Int @id @default(autoincrement())
-  name String
-  score Int
+  content String
   userId Int
+  createdAt DateTime @default(now())
 
-  user User @relation(fields:[userId],references:[id])
+  user User @relation(fields: [userId], references: [id])
 }

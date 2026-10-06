@@ -1,0 +1,17 @@
+"use client";
+
+export function DeletePostButton({postId}:{postId:number}){
+    async function deletePost(){
+        const response = await fetch(`/api/posts/delete/${postId}`, {
+            method: "DELETE",
+        });
+
+        if(response.ok){
+            console.log("削除成功");
+        }
+        window.location.reload();
+    }
+    return(
+        <button onClick={() => deletePost()}>投稿削除</button>
+    )
+}

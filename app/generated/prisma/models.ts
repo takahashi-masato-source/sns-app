@@ -10,5 +10,5 @@
  */
 export type * from './models/User'
 export type * from './models/Session'
-export type * from './models/Record'
+export type * from './models/Post'
 export type * from './commonInputTypes'
