@@ -1,3 +1,5 @@
+//user.idを受け取りそのidを使ってSessionを作成して返す
+
 import { prisma } from "../prisma";
 import crypto from "crypto";
 

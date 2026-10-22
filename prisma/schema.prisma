@@ -16,12 +16,15 @@ model User{
 
   session Session[]
   post Post[]
+  like Like[]
+  comment Comment[]
+  following Follow[] @relation("UserFollowing")
+  followers Follow[] @relation("UserFollowers")
 }
 
 model Session{
   id String @id
   userId Int 
-  
   user User @relation(fields:[userId],references:[id])
 }
 
@@ -30,6 +33,39 @@ model Post{
   content String
   userId Int
   createdAt DateTime @default(now())
-
   user User @relation(fields: [userId], references: [id])
+
+  like Like[]
+  comment Comment[]
+}
+
+model Like{
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields:[userId],references:[id])
+  postId Int
+  post Post @relation(fields:[postId],references:[id])
+
+  @@unique([userId, postId])
+}
+
+model Comment{
+  id Int @id @default(autoincrement())
+  content String
+  createdAt DateTime @default(now())
+  userId Int
+  user User @relation(fields:[userId],references:[id])
+  postId Int
+  post Post @relation(fields:[postId],references:[id])
+}
+
+model Follow {
+  id Int @id @default(autoincrement())
+
+  followerId Int
+  follower User @relation("UserFollowing", fields: [followerId], references: [id])
+  followingId Int
+  following User @relation("UserFollowers", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
 }

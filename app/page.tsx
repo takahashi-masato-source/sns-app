@@ -1,3 +1,5 @@
+//メインメニュー　全てのページに繋がる場所　大きな仕事はなし
+
 "use client";
 import Link from 'next/link'
 
@@ -13,6 +15,7 @@ export default function Home() {
         <Link href={"/profile"}>Profile画面</Link>
         <Link href={"/post/create"}>投稿画面</Link>
         <Link href={"/posts"}>投稿一覧</Link>
+        <Link href={"/followerPosts"}>フォロー中の投稿一覧</Link>
       </div>
     </main>
   );

@@ -1,3 +1,8 @@
+// プロフィールを更新するためのnameとbioを受け取る
+// getSessionService()でログイン中のUserを取得する
+// Userのidを指定してnameとbioを更新する
+// 更新したUserを返す
+
 import { prisma } from "@/lib/prisma";
 import { getSessionService } from "@/lib/services/getSessionService";
 import { NextResponse } from "next/server";

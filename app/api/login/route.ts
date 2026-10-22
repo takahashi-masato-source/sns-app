@@ -1,3 +1,4 @@
+//もらった情報を使ってログインするAPI
 import { NextResponse } from "next/server";
 import { loginService } from "@/lib/services/loginService";
 

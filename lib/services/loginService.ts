@@ -1,3 +1,10 @@
+//受けとったmailとpasswordを使ってログインをする
+//mailをloginRepositoryに渡してuserテーブルからアカウント取得を行う
+//アカウント取得後はpasswordと正誤確認をする
+//正しい場合sessionRepositoryでsessionテーブルをcreateする
+//SessionIDをCookieに保存する
+//UserをRouteへ返す
+
 import { loginResoritory } from "@/lib/repositories/loginResoritory";
 import { sessionRepository } from "@/lib/repositories/sessionRepository";
 import { compare } from 'bcryptjs';

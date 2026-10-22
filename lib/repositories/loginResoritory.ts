@@ -1,3 +1,5 @@
+//mailを受け取りuserテーブルからmailにあうuser情報を取得して返す
+
 import { prisma } from "../prisma";
 
 export async function loginResoritory(

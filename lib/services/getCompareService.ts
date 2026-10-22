@@ -1,7 +1,7 @@
-// ログイン中のuserを取得する
+// getSessionService()でログイン中のuserを取得する
 // 指定された投稿を取得する
 // user.idとpost.userIdが同じか確認する
-// 認可できたらログイン中のuserデータを返す
+// 認可が終わればログイン中のuserデータを返す
 
 import { getSessionService } from "./getSessionService";
 import { prisma } from "../prisma";

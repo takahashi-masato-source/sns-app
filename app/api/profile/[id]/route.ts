@@ -1,3 +1,6 @@
+//URLからuser.idをもらってuserテーブルからuser.idに合う情報を取得して返す
+//includeしてpostのuserIdが同じものも返す
+
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -11,13 +14,15 @@ export async function GET(
         where: {
             id: Number(id),
         },
-        select: {
-            id: true,
-            name: true,
-            mail: true,
-            bio:true,
+        include: {
+            post: true,
+            _count:{
+                select:{
+                    followers:true,
+                    following:true,
+                }
+            }
         },
     });
-
     return NextResponse.json(profile);
 }

@@ -1,4 +1,8 @@
-//postのcontentを編集する
+//postのidを受け取る
+//getCompareService()で認可を確認する
+//受けとったpostのidを指定して投稿内容を編集する
+//編集した内容を返す
+
 
 import { prisma } from "@/lib/prisma";
 import { getCompareService } from "@/lib/services/getCompareService";

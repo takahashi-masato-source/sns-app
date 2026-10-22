@@ -1,3 +1,8 @@
+//cookieからsessionIdを取得
+//logoutRepository()にsessionIdを送ってsessionテーブルを削除
+//cookie内に保存しているsessionIdを削除
+//削除されたという情報を返す
+
 import { cookies } from "next/headers";
 import { logoutRepository } from "@/lib/repositories/logoutRepository";
 

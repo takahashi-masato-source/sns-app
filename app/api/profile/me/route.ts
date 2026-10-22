@@ -1,3 +1,5 @@
+//getSessionService()でuserデータを取得して返す
+
 import { getSessionService } from "@/lib/services/getSessionService";
 import { NextResponse } from "next/server";
 

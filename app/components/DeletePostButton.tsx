@@ -1,3 +1,7 @@
+// postテーブルのidを受け取る
+// 受け取ったidを使って削除APIにリクエストを送る
+// 削除処理を実行するボタンを作成する
+
 "use client";
 
 export function DeletePostButton({postId}:{postId:number}){
@@ -12,6 +16,6 @@ export function DeletePostButton({postId}:{postId:number}){
         window.location.reload();
     }
     return(
-        <button onClick={() => deletePost()}>投稿削除</button>
+        <button onClick={deletePost}>投稿削除</button>
     )
 }

@@ -1,3 +1,5 @@
+//投稿する内容を書いて実際に投稿するページ
+
 "use client"
 
 import { FormEvent, useState } from "react"
@@ -6,7 +8,7 @@ export default function PostCreate(){
     const[post,setPost]=useState("");
 
     async function handlePost(e:FormEvent){
-        e.defaultPrevented;
+        e.preventDefault();
 
         const response = await fetch("/api/posts",{
             method:"POST",

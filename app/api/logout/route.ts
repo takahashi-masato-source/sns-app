@@ -1,4 +1,4 @@
-
+//ログイン中のsessionデータを削除してログイン状態を削除する(アカウントは消えない)
 import { NextResponse } from "next/server";
 import { logoutService } from "@/lib/services/logoutService";
 

@@ -56,3 +56,18 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type Post = Prisma.PostModel
+/**
+ * Model Like
+ * 
+ */
+export type Like = Prisma.LikeModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel
+/**
+ * Model Follow
+ * 
+ */
+export type Follow = Prisma.FollowModel

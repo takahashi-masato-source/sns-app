@@ -1,3 +1,8 @@
+// postテーブルのidを受け取る
+// そのidを使って投稿編集画面に遷移する
+// 編集する投稿のidをURLに渡す
+// その処理を実行するbuttonを作る
+
 "use client"
 
 import { useRouter } from "next/navigation";

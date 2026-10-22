@@ -1,13 +1,19 @@
+//アカウントを作成するページ
+
 "use client";
 
-import { FormEvent, useState } from "react"
+import { SubmitEvent, useState } from "react"
 
 export default function SignUp(){
     const[name,setName]=useState("");
     const[mail,setMail]=useState("");
     const[password,setPassword]=useState("");
-
-    async function handleSignUp(e: FormEvent<HTMLFormElement>){
+    // eはイベント情報　イベントが起きたときに渡される
+    // SubmitEventはformのsubmitに関するイベントの型
+    // HTMLFormElementはそのイベントが発生した対象がHTMLのform要素であることを表す
+    async function handleSignUp(e: SubmitEvent<HTMLFormElement>){
+        // HTMLのformにはsubmitするとブラウザが標準のフォーム送信を行う動作がある
+        // 今回はfetchで自分で送信するためブラウザ標準の送信を止める
         e.preventDefault();
 
         const response = await fetch("/api/users",{

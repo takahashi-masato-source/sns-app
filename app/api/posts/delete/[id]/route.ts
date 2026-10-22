@@ -1,3 +1,7 @@
+// postテーブルのidを受け取る
+// getCompareService()にpost.idを渡してログイン中のUserがその投稿を削除できるか確認する
+// 削除してよい場合そのpost.idのPostを削除する
+
 import { prisma } from "@/lib/prisma";
 import { getCompareService } from "@/lib/services/getCompareService";
 import { NextResponse } from "next/server";

@@ -1,3 +1,5 @@
+//sessionIdをもらってsessionテーブルのsession.idと比較し合うものを返す
+
 import { prisma } from "@/lib/prisma";
 
 export async function getSessionRepository(

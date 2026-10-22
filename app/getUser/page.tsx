@@ -1,3 +1,6 @@
+//ログインしているuserのnameとmailを表示するページ
+//ログアウトもここで行うことができる
+
 "use client";
 
 import { useState,useEffect } from "react"
@@ -38,7 +41,7 @@ export default function GetUser(){
                         <p>{userData.mail}</p>
                     </label>
                     <p>ログアウト画面</p>
-                <button onClick={handleDelete}>ログアウト</button>
+                    <button onClick={handleDelete}>ログアウト</button>
                 </>
             ) : (
                 <p>ログインしていません</p>

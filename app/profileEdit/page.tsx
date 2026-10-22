@@ -1,8 +1,13 @@
+// プロフィール画面の内容を変更するページ
+// /api/profile/meからログイン中のUserの現在のnameとbioを取得する
+// 取得したnameとbioを編集し、/api/profileにPATCHして更新する
+
+
 "use client"
 
 import { useEffect, useState } from "react";
 
-type user = {
+type User = {
     id: number;
     name: string;
     mail: string;
@@ -10,7 +15,7 @@ type user = {
 };
 
 export default function ProfileEdit(){
-    const [user, setUser] = useState<user | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(()=>{
         async function getUserData(){

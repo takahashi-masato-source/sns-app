@@ -1,5 +1,7 @@
-//投稿一覧から編集ボタンが押された場合に遷移
-//投稿内容を編集する
+//投稿一覧から編集ボタンが押された場合に遷移するページ
+//post.idを受け取る
+//textareaに書かれた内容をcontentに保存してhandleEdit関数を呼ぶbuttonを作る
+//投稿の編集を行う
 "use client";
 
 import { use, useState ,useEffect} from "react";

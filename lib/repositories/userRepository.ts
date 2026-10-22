@@ -1,3 +1,5 @@
+//受け取ったデータをPrismaを使ってDBに保存する
+
 import { prisma } from "@/lib/prisma";
 
 export async function userRepository(
