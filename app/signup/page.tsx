@@ -1,13 +1,15 @@
-//アカウントを作成するページ
+// アカウントを作成するページ
 
 "use client";
 
+import { useRouter } from "next/navigation";
 import { SubmitEvent, useState } from "react"
 
 export default function SignUp(){
     const[name,setName]=useState("");
     const[mail,setMail]=useState("");
     const[password,setPassword]=useState("");
+    const router = useRouter();
     // eはイベント情報　イベントが起きたときに渡される
     // SubmitEventはformのsubmitに関するイベントの型
     // HTMLFormElementはそのイベントが発生した対象がHTMLのform要素であることを表す
@@ -26,11 +28,12 @@ export default function SignUp(){
                 password:password,
             })
         })
-
         const data = await response.json();
-
         console.log(data);
-    }
+        if(response.ok){
+            router.push("/");
+        }
+    } 
     return(
         <main>
             <h1>アカウント作成</h1>

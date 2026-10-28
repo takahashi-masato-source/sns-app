@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 type post={
     id:number;
     content:string;
+    createdAt:string;
 }
 
 export default function FollowerPosts(){
@@ -15,9 +16,10 @@ export default function FollowerPosts(){
     useEffect(()=>{
         async function getPosts(){
             const response = await fetch("/api/users/followerGet");
+            if (!response.ok) {
+                return;
+            }
             const posts = await response.json();
-
-            console.log(posts);
             setPosts(posts);
         }
         getPosts()
@@ -32,6 +34,7 @@ export default function FollowerPosts(){
                     posts.map((post)=>(
                         <div key={post.id}>
                             <p>{post.content}</p>
+                            <p>{post.createdAt}</p>
                         </div>
                     ))
                 )

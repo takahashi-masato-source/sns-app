@@ -2,12 +2,14 @@
 
 "use client"
 
-import { FormEvent, useState } from "react"
+import { useRouter } from "next/navigation";
+import { SubmitEvent, useState } from "react"
 
 export default function PostCreate(){
     const[post,setPost]=useState("");
+    const router = useRouter();
 
-    async function handlePost(e:FormEvent){
+    async function handlePost(e:SubmitEvent<HTMLFormElement>){
         e.preventDefault();
 
         const response = await fetch("/api/posts",{
@@ -19,6 +21,11 @@ export default function PostCreate(){
                 content:post,
             })
         })
+        const data = await response.json();
+        console.log(data);
+        if(response.ok){
+            router.push("/posts");
+        }
     }
     return(
         <main>

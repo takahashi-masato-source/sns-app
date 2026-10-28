@@ -5,6 +5,7 @@
 
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type User = {
@@ -16,6 +17,7 @@ type User = {
 
 export default function ProfileEdit(){
     const [user, setUser] = useState<User | null>(null);
+    const router = useRouter();
 
     useEffect(()=>{
         async function getUserData(){
@@ -31,7 +33,7 @@ export default function ProfileEdit(){
          if (!user) {
              return;
         }
-        await fetch('/api/profile',{
+        const response = await fetch('/api/profile',{
             method:"PATCH",
             headers:{
                 "Content-Type":"application/json",
@@ -40,8 +42,13 @@ export default function ProfileEdit(){
                 name:user.name,
                 bio:user.bio,
             })
-        })
-        
+        }) 
+        const data = await response.json();
+        console.log(data);
+        if(response.ok){
+            console.log("profileへ移動");
+            router.push("/profile");
+        }
     }
     return(
         <main>

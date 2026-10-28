@@ -1,11 +1,13 @@
 //mailとpasswordを入力してログインを行う
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react"
 
 export default function Login(){
     const[mail,setMail]=useState("");
     const[password,setPassword]=useState("");
+    const router = useRouter();
 
     async function handleLogin(e:FormEvent<HTMLFormElement>){
         e.preventDefault();
@@ -20,9 +22,11 @@ export default function Login(){
                 password:password,
             })
         })
-
         const data = await response.json();
         console.log(data);
+        if(response.ok){
+            router.push("/");
+        }
     }
     return(
         <main>

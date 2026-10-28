@@ -15,8 +15,6 @@ type Post = {
     userId: number;
     createdAt: string;
 };
-
-
 type Profile = {
     id: number;
     name: string;
@@ -25,17 +23,17 @@ type Profile = {
     post:Post[];
 };
 
-
-
 export default function Profile() {
     const [profile, setProfile] = useState<Profile | null>(null);
 
     useEffect(() => {
         async function getProfile() {
             const sessionResponse = await fetch("/api/session");
-            const user = await sessionResponse.json();
-
             if (!sessionResponse.ok) {
+                return;
+            }
+            const user = await sessionResponse.json();
+            if (!user) {
                 return;
             }
 

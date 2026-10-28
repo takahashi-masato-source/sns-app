@@ -6,8 +6,6 @@
 //　コメント返信ボタンを追加し実際にコメントも表示する
 // 表示数を10個ごとにする
 // 検索ページに遷移するボタンを作成
-
-
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { DeletePostButton } from "../components/DeletePostButton";

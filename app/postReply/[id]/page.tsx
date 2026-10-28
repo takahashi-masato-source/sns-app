@@ -4,15 +4,17 @@
 
 "use client";
 
-import { FormEvent, use, useState } from "react";
+import { useRouter } from "next/navigation";
+import { SubmitEvent, use, useState } from "react";
 
 export default function PostReplyId(
     {params}:{params:Promise<{id:string}>}
 ){
     const[comment,setComment]=useState("");
     const {id} = use(params);
+    const router = useRouter();
 
-    async function handleReply(e:FormEvent){
+    async function handleReply(e:SubmitEvent<HTMLFormElement>){
         e.preventDefault();
 
         const response = await fetch(`/api/posts/${id}/reply`,{
@@ -24,6 +26,11 @@ export default function PostReplyId(
                 content:comment,
             })
         })
+        const data =await response.json();
+        console.log(data);
+        if(response.ok){
+            router.push("/posts");
+        }
     }
     return(
         <main>
