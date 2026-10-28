@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SNS App
 
-## Getting Started
+## 概要
 
-First, run the development server:
+Next.jsを使用して作成したSNSアプリです。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ユーザー登録・ログインから、投稿、いいね、コメント、フォローまで、SNSの基本的な機能を実装しています。
+
+Webアプリケーションにおける「ユーザーの操作 → API → データ処理 → データベース」というデータの流れを理解することを目的として開発しました。
+
+## 主な機能
+
+- ユーザー登録
+- ログイン・ログアウト
+- Session / Cookieによるログイン状態の管理
+- プロフィール表示・編集
+- 投稿の作成・編集・削除
+- 投稿一覧表示
+- 投稿検索
+- ページング
+- いいね・いいね解除
+- コメント・コメント削除
+- ユーザー間のフォロー・フォロー解除
+- フォロー中ユーザーの投稿表示
+- 投稿・コメントに対する権限チェック
+- 入力値のバリデーション
+- エラーハンドリング
+- VitestによるServiceのテスト
+
+## 使用技術
+
+- Next.js
+- TypeScript
+- React
+- Prisma
+- SQLite
+- Vitest
+- bcryptjs
+
+## アプリケーション構成
+
+基本的に、以下のような役割分担を意識して実装しています。
+
+```text
+画面
+ ↓
+API Route
+ ↓
+Service
+ ↓
+Repository
+ ↓
+Prisma
+ ↓
+SQLite
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+画面から受け取ったデータをAPIで処理し、必要に応じてServiceで認証・権限確認などの処理を行い、RepositoryからPrismaを通してデータベースを操作する構成にしています。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## セキュリティ・品質面で意識したこと
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- パスワードをハッシュ化して保存
+- Session / Cookieを利用した認証
+- ログインユーザー自身のデータかどうかを確認してから編集・削除
+- 自分自身へのフォローを防止
+- SQL Injection、XSS、CSRFなどのWebセキュリティについて学習
+- 入力値のバリデーション
+- APIで発生するエラーへの対応
+- ServiceのテストをVitestで実装
 
-## Learn More
+## テスト
 
-To learn more about Next.js, take a look at the following resources:
+Vitestを使用してServiceのテストを実装しています。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+現在はユーザー登録処理などを中心に、入力値が不正な場合に正しくエラーになることを確認しています。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 開発について
 
-## Deploy on Vercel
+このアプリは、機能を小さく分けて実装しながら、各機能に必要なデータ、データベースのテーブル・リレーション、API、データ処理の流れを確認しながら開発しました。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+単に画面を作るだけではなく、データベースに保存された情報をどのように取得・追加・更新・削除するかを意識して実装しています。
