@@ -2,14 +2,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react"
+import { SubmitEvent, useState } from "react"
 
 export default function Login(){
     const[mail,setMail]=useState("");
     const[password,setPassword]=useState("");
     const router = useRouter();
 
-    async function handleLogin(e:FormEvent<HTMLFormElement>){
+    async function handleLogin(e:SubmitEvent<HTMLFormElement>){
         e.preventDefault();
 
         const response = await fetch("/api/login",{

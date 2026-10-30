@@ -14,6 +14,13 @@ export async function loginService(
     mail:string,
     password:string
 ){
+    if (!mail) {
+        throw new Error("mailがない");
+    }
+
+    if (!password) {
+        throw new Error("passwordがない");
+    }
     const user = await loginResoritory(mail);
 
     if(!user){

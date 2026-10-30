@@ -63,10 +63,16 @@ SQLite
 - Session / Cookieを利用した認証
 - ログインユーザー自身のデータかどうかを確認してから編集・削除
 - 自分自身へのフォローを防止
-- SQL Injection、XSS、CSRFなどのWebセキュリティについて学習
 - 入力値のバリデーション
 - APIで発生するエラーへの対応
 - ServiceのテストをVitestで実装
+
+## セキュリティについて学習したこと
+
+- SQL Injection
+- XSS
+- CSRF
+- Rate Limiting
 
 ## テスト
 
