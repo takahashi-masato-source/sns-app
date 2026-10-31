@@ -6,8 +6,8 @@ import { compare } from "bcryptjs";
 vi.mock("../repositories/loginResoritory",()=>({
     loginResoritory:vi.fn(),
 }))
-vi.mock("bcryptjs", () => ({
-    compare: vi.fn(async () => false),
+vi.mock("bcryptjs",()=>({
+    compare: vi.fn(async()=>false),
 }));
 
 describe("loginService",()=>{
