@@ -4,68 +4,65 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
-model User{
-  id Int @id @default(autoincrement())
-  name String
-  mail String @unique
+model User {
+  id           Int       @id @default(autoincrement())
+  name         String
+  mail         String    @unique
   passwordHash String
-  bio String @default("")
-
-  session Session[]
-  post Post[]
-  like Like[]
-  comment Comment[]
-  following Follow[] @relation("UserFollowing")
-  followers Follow[] @relation("UserFollowers")
+  bio          String    @default("")
+  comment      Comment[]
+  following    Follow[]  @relation("UserFollowing")
+  followers    Follow[]  @relation("UserFollowers")
+  like         Like[]
+  post         Post[]
+  session      Session[]
 }
 
-model Session{
-  id String @id
-  userId Int 
-  user User @relation(fields:[userId],references:[id])
-}
-
-model Post{
-  id Int @id @default(autoincrement())
-  content String
+model Session {
+  id     String @id
   userId Int
-  createdAt DateTime @default(now())
-  user User @relation(fields: [userId], references: [id])
-
-  like Like[]
-  comment Comment[]
+  user   User   @relation(fields: [userId], references: [id])
 }
 
-model Like{
-  id Int @id @default(autoincrement())
+model Post {
+  id        Int       @id @default(autoincrement())
+  content   String
+  userId    Int
+  createdAt DateTime  @default(now())
+  comment   Comment[]
+  like      Like[]
+  user      User      @relation(fields: [userId], references: [id])
+}
+
+model Like {
+  id     Int  @id @default(autoincrement())
   userId Int
-  user User @relation(fields:[userId],references:[id])
   postId Int
-  post Post @relation(fields:[postId],references:[id])
+  post   Post @relation(fields: [postId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
 }
 
-model Comment{
-  id Int @id @default(autoincrement())
-  content String
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
   createdAt DateTime @default(now())
-  userId Int
-  user User @relation(fields:[userId],references:[id])
-  postId Int
-  post Post @relation(fields:[postId],references:[id])
+  userId    Int
+  postId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Follow {
-  id Int @id @default(autoincrement())
-
-  followerId Int
-  follower User @relation("UserFollowing", fields: [followerId], references: [id])
+  id          Int  @id @default(autoincrement())
+  followerId  Int
   followingId Int
-  following User @relation("UserFollowers", fields: [followingId], references: [id])
+  follower    User @relation("UserFollowing", fields: [followerId], references: [id])
+  following   User @relation("UserFollowers", fields: [followingId], references: [id])
 
   @@unique([followerId, followingId])
 }
