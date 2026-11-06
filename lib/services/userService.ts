@@ -9,11 +9,11 @@ export async function userService(
     mail:string,
     password:string,
 ){
-    if (name === "") {
+    if (name.trim() === "") {
         throw new Error("nameがない");
     }
 
-    if (mail === "") {
+    if (mail.trim() === "") {
         throw new Error("mailがない");
     }
 

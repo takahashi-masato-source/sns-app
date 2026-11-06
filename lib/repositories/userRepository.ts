@@ -13,6 +13,12 @@ export async function userRepository(
             name:name,
             mail:mail,
             passwordHash:hashedPassword
+        },
+        select: {
+            id: true,
+            name: true,
+            mail: true,
+            bio: true,
         }
     })
 

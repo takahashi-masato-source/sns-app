@@ -9,7 +9,10 @@ export async function POST(request:Request){
     try{
         const user = await userService(body.name, body.mail, body.password);
         
-        return NextResponse.json(user);
+        return NextResponse.json(
+            user,
+             { status: 201 }
+        );
     }catch(error){
         return NextResponse.json(
             {message:"登録失敗"},

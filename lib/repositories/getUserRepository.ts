@@ -8,7 +8,14 @@ export async function getUserRepository(
     const user = await prisma.user.findUnique({
         where:{
             id:userId,
+        },
+        select:{
+            id:true,
+            name:true,
+            mail:true,
+            bio:true,
         }
+        //passwordhashを返さないようにする
     })
 
     return user;

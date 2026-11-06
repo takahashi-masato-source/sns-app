@@ -24,6 +24,7 @@ export async function DELETE(
     const deletePost = await prisma.post.delete({
         where:{
             id:Number(id),
+            userId: user.id,
         }
     })
 

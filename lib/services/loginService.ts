@@ -36,7 +36,12 @@ export async function loginService(
     const session = await sessionRepository(user.id);
 
     const cookiestore = await cookies();
-    cookiestore.set("sessionId", session.id);
+    cookiestore.set("sessionId", session.id, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+    });
 
     return user;
 

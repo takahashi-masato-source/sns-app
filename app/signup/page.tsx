@@ -41,19 +41,19 @@ export default function SignUp(){
                 <div>
                     <label>
                         名前
-                        <input name="name" onChange={(e)=>setName(e.target.value)}/>
+                        <input name="name" onChange={(e)=>setName(e.target.value)} required/>
                     </label>
                 </div>
                 <div>
                     <label>
                         メールアドレス
-                        <input name="mail" onChange={(e)=>setMail(e.target.value)}/>
+                        <input name="mail" onChange={(e)=>setMail(e.target.value)} required/>
                     </label>
                 </div>
                 <div>
                     <label>
                         パスワード
-                        <input name="password" onChange={(e)=>setPassword(e.target.value)} type="password"/>
+                        <input name="password" onChange={(e)=>setPassword(e.target.value)} type="password" required/>
                     </label>
                 </div>
                 <button type="submit">アカウント作成</button>

@@ -27,7 +27,13 @@ export async function PATCH(
         data:{
             name:body.name,
             bio:body.bio,
-        }
+        },
+        select:{
+            id:true,
+            name:true,
+            mail:true,
+            bio:true,
+        },
     })
 
     return NextResponse.json(profile);

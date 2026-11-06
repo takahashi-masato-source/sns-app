@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET(
-    request: Request,
+    _request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
@@ -14,15 +14,21 @@ export async function GET(
         where: {
             id: Number(id),
         },
-        include: {
-            post: true,
-            _count:{
-                select:{
-                    followers:true,
-                    following:true,
+        select: {
+        id: true,
+        name: true,
+        mail: true,
+        bio: true,
+        post: true,
+            _count: {
+                select: {
+                    followers: true,
+                    following: true,
                 }
             }
         },
+        // passwordhashを返さないようにする
+        // selectとincludeは同時に使えない
     });
     return NextResponse.json(profile);
 }
